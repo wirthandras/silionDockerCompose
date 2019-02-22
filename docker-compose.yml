@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+        silion:
+                image: "wirthandras/silion:0.0.1-silion"
+                ports:
+                        - "9000:9500"
+                environment:
+                        - DATASOURCE
+                        - USERNAME
+                        - PASSWORD                       
+        owl:
+                image: "wirthandras/owl:0.0.1-owl"
+                ports:
+                        - "9500:9500"
+                environment:
+                        OWL_URL: 'http://silion:9500/api/json'
+                depends_on:
+                        - silion
+
